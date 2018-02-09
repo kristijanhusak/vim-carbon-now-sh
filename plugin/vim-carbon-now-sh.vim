@@ -1,7 +1,9 @@
 let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', 't=material')
 let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
 
-function! CarbonNowSh() range
+command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
+
+function! s:carbonNowSh() range
   let l:text = s:getVisualSelection()
   let l:browser = s:getBrowser()
   let l:options = escape(g:carbon_now_sh_options, '&')

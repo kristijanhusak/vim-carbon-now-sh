@@ -5,13 +5,13 @@
 
 ## Usage
 
-Select some text in visual mode and type this:
+Select some text in visual mode and run this command:
 ```vimL
-:call CarbonNowSh()
+:CarbonNowSh
 ```
 
-You can also map it to something, just make sure it starts with `:`
+You can also map it to something and use it after selection:
 
 ```vimL
-vnoremap <F5> :call CarbonNowSh()
+vnoremap <F5> :CarbonNowSh<CR>
 ```

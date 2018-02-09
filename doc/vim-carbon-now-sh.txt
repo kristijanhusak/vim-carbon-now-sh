@@ -9,7 +9,7 @@ vim-carbon-now-sh			    *vim-carbon-now-sh*
 
 1. Introduction				    |vim-carbon-now-sh-introduction|
 2. Install				    |vim-carbon-now-sh-install|
-3. Functions				    |vim-carbon-now-sh-functions|
+3. Commands				    |vim-carbon-now-sh-commands|
 4. Settings				    |vim-carbon-now-sh-settings|
 
 ==============================================================================
@@ -24,16 +24,15 @@ Install with `Plug`
 `Plug 'kristijanhusak/vim-carbon-now-sh'`
 
 Add mapping:
-`vnoremap <F5> :call CarbonNowSh()`
+`vnoremap <F5> :CarbonNowSh`
 
 ==============================================================================
-3. Functions					*vim-carbon-now-sh-functions*
+3. Commands					*vim-carbon-now-sh-commands*
 
-					      *CarbonNowSh()*
-CarbonNowSh()
+CarbonNowSh						      *:CarbonNowSh*
 		Used for sending seleted text to https://carbon.now.sh
 
-		`:call CarbonNowSh()`
+		`:CarbonNowSh`
 
 ==============================================================================
 4. Settings					*vim-carbon-now-sh-settings*
