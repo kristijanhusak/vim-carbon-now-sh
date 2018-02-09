@@ -1,0 +1,55 @@
+*vim-carbon-now-sh.txt*    Open selected text in https://carbon.now.sh
+
+        Open selected text in https://carbon.now.sh
+
+Author: Kristijan <husakkristijan at gmail.com>
+License: MIT
+
+vim-carbon-now-sh			    *vim-carbon-now-sh*
+
+1. Introduction				    |vim-carbon-now-sh-introduction|
+2. Install				    |vim-carbon-now-sh-install|
+3. Functions				    |vim-carbon-now-sh-functions|
+4. Settings				    |vim-carbon-now-sh-settings|
+
+==============================================================================
+1. Introduction					*vim-carbon-now-sh-introduction*
+
+(n)vim implementation plugin for opening selected content in https://carbon.now.sh
+
+==============================================================================
+2. Install					*vim-carbon-now-sh-install*
+
+Install with `Plug`
+`Plug 'kristijanhusak/vim-carbon-now-sh'`
+
+Add mapping:
+`vnoremap <F5> :call CarbonNowSh()`
+
+==============================================================================
+3. Functions					*vim-carbon-now-sh-functions*
+
+					      *CarbonNowSh()*
+CarbonNowSh()
+		Used for sending seleted text to https://carbon.now.sh
+
+		`:call CarbonNowSh()`
+
+==============================================================================
+4. Settings					*vim-carbon-now-sh-settings*
+
+					      *g:carbon_now_sh_options*
+g:carbon_now_sh_options
+		Options passed as query string when opening
+		https://carbon.now.sh. Must not contain `?`.
+
+		Default value: `t=material`
+
+g:carbon_now_sh_browser
+		Browser used to open url. If nothing is set, it tries to
+		detect default browser by operating system.
+
+		Default value: ''
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:

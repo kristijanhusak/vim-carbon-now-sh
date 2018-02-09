@@ -4,13 +4,13 @@ let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
 function! CarbonNowSh() range
   let l:text = s:getVisualSelection()
   let l:browser = s:getBrowser()
-  let l:options = escape(get(g:, 'carbon_options', 't=material'), '&')
+  let l:options = escape(g:carbon_now_sh_options, '&')
 
   exec '!'.l:browser.' https://carbon.now.sh/\?'.l:options.'\&code='.escape(s:urlEncode(l:text), '%')
 endfunction
 
 function! s:getBrowser() "{{{
-  if g:carbon_now_sh_browser
+  if g:carbon_now_sh_browser !=? ''
     return g:carbon_now_sh_browser
   endif
 
