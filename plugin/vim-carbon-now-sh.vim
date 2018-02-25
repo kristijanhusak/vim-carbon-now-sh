@@ -45,13 +45,13 @@ function! s:urlEncode(string) "{{{
   let l:characters = split(a:string, '.\zs')
   for l:character in l:characters
     if l:character ==? ' '
-      let l:result = l:result.'+'
+      let l:result = l:result.'%20'
     elseif s:characterRequiresUrlEncoding(l:character)
       let l:i = 0
       while l:i < strlen(l:character)
         let l:byte = strpart(l:character, l:i, 1)
         let l:decimal = char2nr(l:byte)
-        let l:result = l:result.'%'.printf('%02x', l:decimal)
+        let l:result = l:result.'%25'.printf('%02x', l:decimal)
         let l:i += 1
       endwhile
     else
