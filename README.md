@@ -2,6 +2,22 @@
 
 (n)vim implementation plugin for opening selected content in [https://carbon.now.sh](https://carbon.now.sh).
 
+## Installation
+
+### Vundle
+
+Add the following line to your `.vimrc`
+
+```vimL
+Plugin 'kristijanhusak/vim-carbon-now-sh'
+```
+
+Then run the following in Vim:
+
+```
+:source %
+:PluginInstall
+```
 
 ## Usage
 
