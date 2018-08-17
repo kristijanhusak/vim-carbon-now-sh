@@ -1,3 +1,9 @@
+if exists('g:carbon_now_sh_loaded')
+  finish
+endif
+
+let g:carbon_now_sh_loaded = 1
+
 let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', 't=material')
 let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
 
@@ -20,7 +26,7 @@ function! s:getBrowser() "{{{
     return 'xdg-open'
   endif
 
-  if has('mac')
+  if (has('mac') || has('gui_mac') || has('macunix') || has('osx') || has('osxdarwin')) && executable('open')
     return 'open'
   endif
 

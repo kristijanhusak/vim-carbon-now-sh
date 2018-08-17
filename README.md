@@ -31,3 +31,11 @@ You can also map it to something and use it after selection:
 ```vimL
 vnoremap <F5> :CarbonNowSh<CR>
 ```
+
+### Browser
+Plugin will try it's best to use your default browser. If it fails, or you want to customize it,
+provide browser executable through this option to your vimrc. Example for google-chrome:
+
+```vimL
+let g:carbon_now_sh_browser = 'google-chrome'
+```
