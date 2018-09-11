@@ -13,8 +13,9 @@ function! s:carbonNowSh() range
   let l:text = s:getVisualSelection()
   let l:browser = s:getBrowser()
   let l:options = escape(g:carbon_now_sh_options, '&')
+  let l:filetype = &filetype
 
-  exec '!'.l:browser.' https://carbon.now.sh/\?'.l:options.'\&code='.escape(s:urlEncode(l:text), '%')
+  call system(l:browser.' https://carbon.now.sh/\?'.l:options.'\&l='.l:filetype.'\&code='.escape(s:urlEncode(l:text), '%'))
 endfunction
 
 function! s:getBrowser() "{{{
