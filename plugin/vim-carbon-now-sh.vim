@@ -4,18 +4,18 @@ endif
 
 let g:carbon_now_sh_loaded = 1
 
-let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', 't=material')
+let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', '{}')
 let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
 
 command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
 
 function! s:carbonNowSh() range
-  let l:text = s:getVisualSelection()
+  let l:text = s:urlEncode(s:getVisualSelection())
   let l:browser = s:getBrowser()
-  let l:options = escape(g:carbon_now_sh_options, '&')
+  let l:options = s:getOptions()
   let l:filetype = &filetype
 
-  call system(l:browser.' https://carbon.now.sh/\?'.l:options.'\&l='.l:filetype.'\&code='.escape(s:urlEncode(l:text), '%'))
+  call system(l:browser.escape(' https://carbon.now.sh/?'.l:options.'&l='.l:filetype.'&code='.l:text, '?&%'))
 endfunction
 
 function! s:getBrowser() "{{{
@@ -46,19 +46,26 @@ function! s:getBrowser() "{{{
   throw 'Browser not found'
 endfunction "}}}
 
+function! s:getOptions() "{{{
+  let l:options = g:carbon_now_sh_options
+  let l:result = ''
+  for l:key in keys(l:options)
+    let l:result = l:result.'&'.s:urlEncode(l:key).'='.s:urlEncode(l:options[key])
+  endfor
+  return l:result
+endfunction "}}}
+
 function! s:urlEncode(string) "{{{
   let l:result = ''
 
   let l:characters = split(a:string, '.\zs')
   for l:character in l:characters
-    if l:character ==? ' '
-      let l:result = l:result.'%20'
-    elseif s:characterRequiresUrlEncoding(l:character)
+    if s:characterRequiresUrlEncoding(l:character)
       let l:i = 0
       while l:i < strlen(l:character)
         let l:byte = strpart(l:character, l:i, 1)
         let l:decimal = char2nr(l:byte)
-        let l:result = l:result.'%25'.printf('%02x', l:decimal)
+        let l:result = l:result.'%'.printf('%02x', l:decimal)
         let l:i += 1
       endwhile
     else
@@ -98,6 +105,7 @@ function! s:getVisualSelection() "{{{
     let l:lines[0] = l:lines[0][l:column_start - 1:]
 
     return join(l:lines, "\n")
+
 endfunction "}}}
 
 " vim:foldenable:foldmethod=marker:sw=2

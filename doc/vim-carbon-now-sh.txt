@@ -42,7 +42,7 @@ g:carbon_now_sh_options
 		Options passed as query string when opening
 		https://carbon.now.sh. Must not contain `?`.
 
-		Default value: `t=material`
+		Default value: `{}`
 
 g:carbon_now_sh_browser
 		Browser used to open url. If nothing is set, it tries to

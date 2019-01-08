@@ -39,3 +39,13 @@ provide browser executable through this option to your vimrc. Example for google
 ```vimL
 let g:carbon_now_sh_browser = 'google-chrome'
 ```
+
+### Options
+You can set the query string that will be passed to [https://carbon.now.sh](https://carbon.now.sh).
+Example for setting font and line number:
+
+```vimL
+let g:carbon_now_sh_options =
+\ { 'ln': 'true',
+  \ 'fm': 'Source Code Pro' }
+```
