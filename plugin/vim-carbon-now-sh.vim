@@ -12,7 +12,7 @@ command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
 function! s:carbonNowSh() range
   let l:text = s:urlEncode(s:getVisualSelection())
   let l:browser = s:getBrowser()
-  let l:options = s:getOptions()
+  let l:options = type(g:carbon_now_sh_options) == v:t_dict ? s:getOptions() : g:carbon_now_sh_options
   let l:filetype = &filetype
 
   call system(l:browser.escape(' https://carbon.now.sh/?'.l:options.'&l='.l:filetype.'&code='.l:text, '?&%'))
