@@ -27,12 +27,12 @@ function! s:getBrowser() "{{{
     return 'xdg-open'
   endif
 
-  if (has('mac') || has('gui_mac') || has('macunix') || has('osx') || has('osxdarwin')) && executable('open')
-    return 'open'
-  endif
-
   if has('win32')
     return 'start'
+  endif
+
+  if executable('open')
+    return 'open'
   endif
 
   if executable('google-chrome')
