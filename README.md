@@ -32,6 +32,8 @@ You can also map it to something and use it after selection:
 vnoremap <F5> :CarbonNowSh<CR>
 ```
 
+(or `<c-p>` for control+p)
+  
 ### Browser
 Plugin will try it's best to use your default browser. If it fails, or you want to customize it,
 provide browser executable through this option to your vimrc. Example for google-chrome:
@@ -39,6 +41,8 @@ provide browser executable through this option to your vimrc. Example for google
 ```vimL
 let g:carbon_now_sh_browser = 'google-chrome'
 ```
+
+Mac users might need to set this to `open` to have it open a new tab in your default browser.
 
 ### Options
 You can set the query string that will be passed to [https://carbon.now.sh](https://carbon.now.sh).
