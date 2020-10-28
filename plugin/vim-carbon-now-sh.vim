@@ -4,7 +4,7 @@ endif
 
 let g:carbon_now_sh_loaded = 1
 
-let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', '{}')
+let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', {})
 let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
 
 command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
@@ -14,13 +14,13 @@ function! s:carbonNowSh() range
   let l:browser = s:getBrowser()
   let l:options = type(g:carbon_now_sh_options) == v:t_dict ? s:getOptions() : g:carbon_now_sh_options
   let l:filetype = &filetype
-  let l:url = 'https://carbon.now.sh/?'.l:options.'&l='.l:filetype.'&code='.l:text
+  let l:url = 'https://carbon.now.sh/?l=' .. l:filetype .. '&code=' .. l:text .. '&' .. l:options
 
-  if has('win32') && l:browser ==? 'start' && &shell ==? 'cmd.exe'
-    return system(l:browser.' "" "'.l:url.'"')
+  if has('win32') && l:browser ==? 'start' && &shell =~? '\<cmd\.exe$'
+    return system(l:browser .. ' "" "' .. l:url .. '"')
   endif
 
-  call system(l:browser.escape(' '.l:url, '?&%'))
+  call system(l:browser .. escape(' ' .. l:url, '?&%'))
 endfunction
 
 function! s:getBrowser() "{{{
@@ -55,9 +55,9 @@ function! s:getOptions() "{{{
   let l:options = g:carbon_now_sh_options
   let l:result = ''
   for l:key in keys(l:options)
-    let l:result = l:result.'&'.s:urlEncode(l:key).'='.s:urlEncode(l:options[key])
+    let l:result = l:result .. '&' .. s:urlEncode(l:key) .. '=' .. s:urlEncode(l:options[key])
   endfor
-  return l:result
+  return l:result[1:]
 endfunction "}}}
 
 function! s:urlEncode(string) "{{{
@@ -70,11 +70,11 @@ function! s:urlEncode(string) "{{{
       while l:i < strlen(l:character)
         let l:byte = strpart(l:character, l:i, 1)
         let l:decimal = char2nr(l:byte)
-        let l:result = l:result.'%'.printf('%02x', l:decimal)
+        let l:result = l:result .. '%' .. printf('%02x', l:decimal)
         let l:i += 1
       endwhile
     else
-      let l:result = l:result.l:character
+      let l:result = l:result .. l:character
     endif
   endfor
 
