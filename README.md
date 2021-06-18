@@ -32,6 +32,15 @@ You can also map it to something and use it after selection:
 vnoremap <F5> :CarbonNowSh<CR>
 ```
 
+### Alternate Endpoint
+To send your code snippets to a local instance of carbon.now instead of the public, shared site
+(e.g. if you're doing private development, your code is internal, etc.), pass in an alternate
+base URL via your Vim config:
+
+```vimL
+let g:carbon_now_sh_base_url = 'http://localhost:3000'
+```
+
 ### Browser
 Plugin will try it's best to use your default browser. If it fails, or you want to customize it,
 provide browser executable through this option to your vimrc. Example for google-chrome:
