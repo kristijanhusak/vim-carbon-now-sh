@@ -6,6 +6,7 @@ let g:carbon_now_sh_loaded = 1
 
 let g:carbon_now_sh_options = get(g:, 'carbon_now_sh_options', {})
 let g:carbon_now_sh_browser = get(g:, 'carbon_now_sh_browser', '')
+let g:carbon_now_sh_base_url = get(g:, 'carbon_now_sh_base_url', 'https://carbon.now.sh')
 
 command! -range=% CarbonNowSh <line1>,<line2>call s:carbonNowSh()
 
@@ -14,7 +15,7 @@ function! s:carbonNowSh() range
   let l:browser = s:getBrowser()
   let l:options = type(g:carbon_now_sh_options) == v:t_dict ? s:getOptions() : g:carbon_now_sh_options
   let l:filetype = &filetype
-  let l:url = 'https://carbon.now.sh/?l=' .. l:filetype .. '&code=' .. l:text .. '&' .. l:options
+  let l:url = g:carbon_now_sh_base_url .. '/?l=' .. l:filetype .. '&code=' .. l:text .. '&' .. l:options
 
   if has('win32') && l:browser ==? 'start' && &shell =~? '\<cmd\.exe$'
     return system(l:browser .. ' "" "' .. l:url .. '"')

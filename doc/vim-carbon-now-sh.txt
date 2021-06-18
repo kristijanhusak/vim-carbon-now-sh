@@ -44,6 +44,12 @@ g:carbon_now_sh_options
 
 		Default value: `{}`
 
+g:carbon_now_sh_base_url
+		Protocol, host name, and port for the carbon.now.sh 
+		instance to send code snippets to.  Note: no trailing slash.
+
+		Default value: 'https://carbon.now.sh'
+
 g:carbon_now_sh_browser
 		Browser used to open url. If nothing is set, it tries to
 		detect default browser by operating system.
